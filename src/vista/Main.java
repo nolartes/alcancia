@@ -32,10 +32,10 @@ public class Main extends javax.swing.JFrame {
             this.btnAgregar.setEnabled(false);
             this.btnInfo.setEnabled(false);
             this.btnRomper.setEnabled(false);
-            lblCantidad.setText("");
+            lblCantidad.setText("Cantidad total de monedas dentro: 0");
         } else {
             this.btnNueva.setEnabled(false);
-            lblCantidad.setText("Cantidad actual de monedas: " + alcancia.contarMonedas());
+            lblCantidad.setText("Cantidad total de monedas dentro: " + alcancia.contarMonedas());
         }
         
         setTitle("MiAlcancia - Nicolas Olarte");
@@ -54,6 +54,7 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         btnGroup = new javax.swing.ButtonGroup();
+        lblCantidad = new javax.swing.JLabel();
         lblValor = new javax.swing.JLabel();
         rbtn50 = new javax.swing.JRadioButton();
         rbtn100 = new javax.swing.JRadioButton();
@@ -62,21 +63,26 @@ public class Main extends javax.swing.JFrame {
         rbtn1000 = new javax.swing.JRadioButton();
         lblMoneda = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
-        btnInfo = new javax.swing.JButton();
         btnRomper = new javax.swing.JButton();
         btnNueva = new javax.swing.JButton();
-        lblCantidad = new javax.swing.JLabel();
         btnIzquierda = new javax.swing.JButton();
         btnDerecha = new javax.swing.JButton();
         lblContador = new javax.swing.JLabel();
+        btnInfo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblCantidad.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCantidad.setText("Cantidad total de monedas dentro: ");
 
         lblValor.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         lblValor.setText("Selecciona el valor de la moneda:");
 
         btnGroup.add(rbtn50);
         rbtn50.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        rbtn50.setSelected(true);
         rbtn50.setText("$50");
         rbtn50.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,9 +127,10 @@ public class Main extends javax.swing.JFrame {
         });
 
         lblMoneda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMoneda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/50.png"))); // NOI18N
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
-        btnAgregar.setText("Agregar     ");
+        btnAgregar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar moneda seleccionada", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_BOTTOM, new java.awt.Font("Roboto", 1, 10))); // NOI18N
         btnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,17 +138,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        btnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/informacion.png"))); // NOI18N
-        btnInfo.setText("Información");
-        btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        btnInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoActionPerformed(evt);
-            }
-        });
-
         btnRomper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/romper.png"))); // NOI18N
-        btnRomper.setText("Romper     ");
+        btnRomper.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Romper alcancía", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_BOTTOM, new java.awt.Font("Roboto", 1, 10))); // NOI18N
         btnRomper.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         btnRomper.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,16 +148,13 @@ public class Main extends javax.swing.JFrame {
         });
 
         btnNueva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nueva.png"))); // NOI18N
-        btnNueva.setText("Nueva        ");
+        btnNueva.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nueva alcancía", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_BOTTOM, new java.awt.Font("Roboto", 1, 10))); // NOI18N
         btnNueva.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         btnNueva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevaActionPerformed(evt);
             }
         });
-
-        lblCantidad.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        lblCantidad.setText("Cantidad actual de monedas: ");
 
         btnIzquierda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/izquierda.png"))); // NOI18N
         btnIzquierda.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +174,18 @@ public class Main extends javax.swing.JFrame {
         lblContador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblContador.setText("0");
 
+        btnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/informacion.png"))); // NOI18N
+        btnInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ver información de la moneda", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_BOTTOM, new java.awt.Font("Roboto", 1, 10))); // NOI18N
+        btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        btnInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInfoActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel1.setText("Cantidad: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,42 +194,39 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRomper, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNueva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCantidad)
-                            .addComponent(rbtn50)
-                            .addComponent(lblValor)
-                            .addComponent(rbtn100)
-                            .addComponent(rbtn1000)
-                            .addComponent(rbtn200)
-                            .addComponent(rbtn500))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(rbtn50, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtn100, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtn200, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtn500, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRomper, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblValor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbtn1000, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnIzquierda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblContador, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblMoneda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblContador, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDerecha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblMoneda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                            .addComponent(btnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnNueva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblValor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblValor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(rbtn50)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbtn100)
@@ -231,26 +235,24 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbtn500)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbtn1000))
-                    .addComponent(lblMoneda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(rbtn1000)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDerecha)
+                            .addComponent(lblContador, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIzquierda)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnIzquierda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDerecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblContador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCantidad)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInfo)
                     .addComponent(btnAgregar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNueva)
                     .addComponent(btnRomper))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCantidad)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -291,7 +293,7 @@ public class Main extends javax.swing.JFrame {
         int cantidad = Integer.parseInt(lblContador.getText());
         
         if(cantidad == 0) {
-            JOptionPane.showMessageDialog(null, "Por favor escoge una cantidad de monedas...", "Agregar Moneda", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "La cantidad no debe ser cero ;)", "Agregar Moneda", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -322,8 +324,7 @@ public class Main extends javax.swing.JFrame {
         this.escritor.guardar(this.alcancia);
         
         lblContador.setText("0");
-        btnGroup.clearSelection();
-        lblCantidad.setText("Cantidad actual de monedas: " + alcancia.contarMonedas());
+        lblCantidad.setText("Cantidad total de monedas dentro: " + alcancia.contarMonedas());
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnRomperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRomperActionPerformed
@@ -356,9 +357,8 @@ public class Main extends javax.swing.JFrame {
         
         ImageIcon icon = new ImageIcon(getClass().getResource("/img/"+valor+"rev.png"));
         int cantidad = alcancia.getMonedas(valor);
-        String aux = "Existen "+cantidad+" monedas de esta denominación, para\nun total de dinero de $"+valor*cantidad+".";
+        String aux = "Tienes "+cantidad+" monedas de esta denominación.\nTotal de dinero en estas: $"+valor*cantidad+".";
         JOptionPane.showMessageDialog(rootPane, aux, "Información de la Moneda", JOptionPane.PLAIN_MESSAGE, icon);
-        btnGroup.clearSelection();
     }//GEN-LAST:event_btnInfoActionPerformed
 
     private void btnIzquierdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzquierdaActionPerformed
@@ -381,7 +381,7 @@ public class Main extends javax.swing.JFrame {
         this.btnInfo.setEnabled(true);
         this.btnRomper.setEnabled(true);
         this.btnNueva.setEnabled(false);
-        lblCantidad.setText("");
+        lblCantidad.setText("Cantidad total de monedas dentro: 0");
     }//GEN-LAST:event_btnNuevaActionPerformed
 
     /**
@@ -428,6 +428,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnIzquierda;
     private javax.swing.JButton btnNueva;
     private javax.swing.JButton btnRomper;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblContador;
     private javax.swing.JLabel lblMoneda;
